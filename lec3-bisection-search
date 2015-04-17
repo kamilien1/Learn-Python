@@ -1,0 +1,11 @@
+
+guess = raw_input('Put in a letter')
+
+if guess == 'c': 
+    print('correct')
+else if guess == 'h':
+    print('high')
+else if guess == 'l':
+    print('low')
+else:
+    print('not valid, try again')
