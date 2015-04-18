@@ -13,6 +13,41 @@ from Tkinter import *
 # Problem Set 7
 
 #======================
+# Part 1
+# Data structure design
+#======================
+
+# Problem 1
+
+# TODO: NewsStory
+
+class NewsStory(object):
+    
+    def __init__(self ,guid, myTitle, mySubject, mySummary, myURL):
+        self.guid = guid
+        self.title = myTitle
+        self.subject = mySubject
+        self.summary = mySummary
+        self.link = myURL
+    
+    def getGuid(self):
+        return self.guid
+    
+    def getTitle(self):
+        return self.title
+    
+    def getSubject(self):
+        return self.subject
+    
+    def getSummary(self):
+        return self.summary
+    
+    def getLink(self):
+        return self.link
+        
+
+
+#======================
 # Code for retrieving and parsing RSS feeds
 # Do not change this code
 #======================
@@ -39,14 +74,6 @@ def process(url):
     return ret
 #======================
 
-#======================
-# Part 1
-# Data structure design
-#======================
-
-# Problem 1
-
-# TODO: NewsStory
 
 #======================
 # Part 2
