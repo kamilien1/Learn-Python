@@ -91,17 +91,71 @@ class Trigger(object):
 # Whole Word Triggers
 # Problems 2-5
 
-# TODO: WordTrigger
+class WordTrigger(Trigger):
+    
+    def __init__(self, word):
+        self.word = word.lower()
+        
+    # evaluate function? 
+    # true if news story item
+    # should trigger word
+        
+    # True if self.word in eval_string
+    # False otherwise
+    def isWordIn(self,eval_string):
+        # import the maketrans function
+        from string import maketrans
+        # translate all punctuation into a space
+        # lowercase words, and replace punctuations with a space
+        # to_trans = maketrans(string.punctuation,repeat(' ',len(string.punctuation)))
+        # maketrans function translates all string punctuation into ' ', ^^ was a more elegant way
+        # however need to import numpy or some other class
+        empty_string = ''.join(' ' for i in range(len(string.punctuation)))
+        to_trans = (maketrans(string.punctuation,empty_string))
+        temp = eval_string.lower()
+        temp = temp.translate(to_trans)
+        
+        # split and put into an array to search
+        temp = temp.split(' ')
+        
+        # T/F
+        return self.word in temp
+       
+        
 
-# TODO: TitleTrigger
-# TODO: SubjectTrigger
-# TODO: SummaryTrigger
 
+class TitleTrigger(WordTrigger):
+    
+    
+    def evaluate(self,story):
+        return self.isWordIn(story.getTitle())
+        
+        
+
+
+class SubjectTrigger(WordTrigger):
+    
+    def evaluate(self,story):
+        return self.isWordIn(story.getSubject())
+        
+
+class SummaryTrigger(WordTrigger):
+    
+    def evaluate(self,story):
+        return self.isWordIn(story.getSummary())
 
 # Composite Triggers
 # Problems 6-8
 
 # TODO: NotTrigger
+
+class NotTrigger(Trigger):
+    
+    def __init__(self,passed_trigger):
+        self.passed_trigger = passed_trigger
+    
+    def evaluate(self, story):
+        return self.passed_trigger.evaluate(story)
 # TODO: AndTrigger
 # TODO: OrTrigger
 
